@@ -1,4 +1,6 @@
 <?php
+use XoopsModules\Tadtools\Utility;
+
 //區塊主函式 (tad_adm_new)
 function tad_adm_new($options)
 {
@@ -12,12 +14,12 @@ function tad_adm_new($options)
         return;
     }
 
-    $all_data = "";
+    $all_data = '';
 
-    $sql    = "select * from " . $xoopsDB->prefix("users") . " order by uid desc limit 0,{$options[0]}";
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $sql = 'select * from ' . $xoopsDB->prefix('users') . " order by uid desc limit 0,{$options[0]}";
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
-    while ($data = $xoopsDB->fetchArray($result)) {
+    while (false !== ($data = $xoopsDB->fetchArray($result))) {
         foreach ($data as $k => $v) {
             $$k = $v;
         }
@@ -26,73 +28,82 @@ function tad_adm_new($options)
         if ($adm['email'] == $email) {
             $appears = $adm['result'];
         } else {
-
-            $handle = fopen("http://www.stopforumspam.com/api?email={$email}&f=json", "r");
+            $handle = fopen("http://www.stopforumspam.com/api?email={$email}&f=json", 'rb');
             if ($handle) {
                 $json = fgets($handle, 4096);
                 fclose($handle);
             }
 
-            $buffer  = json_decode($json, true);
+            $buffer = json_decode($json, true);
             $appears = $buffer['email']['appears'];
             replace_tad_adm($uid, $email, $appears);
         }
 
-        $bgcolor = "transparent";
-        $checked = "";
+        $bgcolor = 'transparent';
+        $checked = '';
         if ($appears > 0) {
-            $color   = "red";
-            $checked = "checked";
+            $color = 'red';
+            $checked = 'checked';
             if ($posts > 0) {
-                $bgcolor = "yellow";
-                $checked = "";
+                $bgcolor = 'yellow';
+                $checked = '';
             }
         } elseif ($posts > 0) {
             continue;
         } elseif (!empty($user_sig)) {
-            if (preg_match("/[\x7f-\xff]/", $user_sig) or preg_match("/.tw/i", $user_sig)) {
+            if (preg_match("/[\x7f-\xff]/", $user_sig) or preg_match('/.tw/i', $user_sig)) {
                 continue;
-            } else {
-                $checked = "checked";
-                $color   = "#CC6600";
             }
+            $checked = 'checked';
+            $color = '#CC6600';
         } else {
             continue;
         }
 
         $user_regdate = date('Y-m-d', $user_regdate);
-        $last_login   = empty($last_login) ? _MB_TADADM_NEVERLOGIN : date('Y-m-d', $last_login);
+        $last_login = empty($last_login) ? _MB_TADADM_NEVERLOGIN : date('Y-m-d', $last_login);
 
         $all_data .= "
-    <fieldset style='color:{$color};background-color:{$bgcolor};'>
-    <legend><input type='checkbox' name='uid[]' value='$uid' $checked id='uid_{$uid}'>{$uname}<label for='uid_{$uid}'> ({$uid}){$name}</label></legend>
-    <div style='word-wrap:break-word;word-break:break-all;font-size:10px;'><label for='uid_{$uid}'>$email</label></div>
-    <div style='word-wrap:break-word;word-break:break-all;font-size:10px;'><label for='uid_{$uid}'>$url</label></div>
-    <div style='word-wrap:break-word;word-break:break-all;font-size:10px;'>$user_regdate ~ $last_login</div>
-    <div style='word-wrap:break-word;word-break:break-all;font-size:10px;'>$user_sig</div>
-    </fieldset>";
+        <fieldset style='color:{$color};background-color:{$bgcolor};'>
+        <legend><input type='checkbox' name='uid[]' value='$uid' $checked id='uid_{$uid}'>{$uname}<label for='uid_{$uid}'> ({$uid}){$name}</label></legend>
+        <div style='word-wrap:break-word;word-break:break-all;font-size: 0.625rem;'><label for='uid_{$uid}'>$email</label></div>
+        <div style='word-wrap:break-word;word-break:break-all;font-size: 0.625rem;'><label for='uid_{$uid}'>$url</label></div>
+        <div style='word-wrap:break-word;word-break:break-all;font-size: 0.625rem;'>$user_regdate ~ $last_login</div>
+        <div style='word-wrap:break-word;word-break:break-all;font-size: 0.625rem;'>$user_sig</div>
+        </fieldset>";
     }
 
     if (empty($all_data)) {
         return;
     }
-
+    $g2p = (int) $_GET['g2p'];
     $block = "
-  <form action='" . XOOPS_URL . "/modules/tad_adm/admin/spam.php' method='post'>
-    $all_data
-    <input type='hidden' name='g2p' value='{$_GET['g2p']}'>
-    <input type='hidden' name='op' value='del_user'>
-    <input type='submit' value='" . _MB_TADADM_DEL_CHK . "'>
-  </form>
-  ";
+    <form action='" . XOOPS_URL . "/modules/tad_adm/admin/spam.php' method='post'>
+        $all_data
+        <input type='hidden' name='g2p' value='{$g2p}'>
+        <input type='hidden' name='op' value='del_user'>
+        <input type='submit' value='" . _MB_TADADM_DEL_CHK . "'>
+    </form>
+    ";
+
     return $block;
 }
 
 //區塊編輯函式 (tad_adm_new_edit)
 function tad_adm_new_edit($options)
 {
-    $form = _MB_TADADM_SEARCH_NUM . "<input type='text' name='options[0]' value='{$options[0]}'>
-  <div>" . _MB_TADADM_SEARCH_NUM_DESC . "</div>";
+    $form = "
+    <ol class='my-form'>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TADADM_SEARCH_NUM . "</lable>
+            <div class='my-content'>
+                <input type='text' name='options[0]' value='{$options[0]}' class='my-input' size=5>
+                <span class='my-help'>" . _MB_TADADM_SEARCH_NUM_DESC . '</span>
+            </div>
+        </li>
+    </ol>
+    ';
+
     return $form;
 }
 
@@ -102,32 +113,32 @@ if (!function_exists('replace_tad_adm')) {
     {
         global $xoopsDB, $xoopsUser;
 
-        $myts   = MyTextSanitizer::getInstance();
-        $email  = $myts->addSlashes($email);
+        $myts = \MyTextSanitizer::getInstance();
+        $email = $myts->addSlashes($email);
         $result = $myts->addSlashes($result);
 
         $chk_date = date('Y-m-d H:i:s', xoops_getUserTimestamp(time()));
 
-        $sql = "replace into `" . $xoopsDB->prefix("tad_adm") . "`
-    (`uid` , `email` , `result` , `chk_date`)
-    values('{$uid}' , '{$email}' , '{$result}' , '{$chk_date}')";
-        $xoopsDB->queryF($sql) or web_error($sql);
-
+        $sql = 'replace into `' . $xoopsDB->prefix('tad_adm') . "`
+        (`uid` , `email` , `result` , `chk_date`)
+        values('{$uid}' , '{$email}' , '{$result}' , '{$chk_date}')";
+        $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     }
 }
 
 if (!function_exists('get_tad_adm')) {
     //以流水號取得某筆tad_adm資料
-    function get_tad_adm($uid = "")
+    function get_tad_adm($uid = '')
     {
         global $xoopsDB;
         if (empty($uid)) {
             return;
         }
 
-        $sql    = "select * from `" . $xoopsDB->prefix("tad_adm") . "` where `uid` = '{$uid}'";
-        $result = $xoopsDB->query($sql) or web_error($sql);
-        $data   = $xoopsDB->fetchArray($result);
+        $sql = 'select * from `' . $xoopsDB->prefix('tad_adm') . "` where `uid` = '{$uid}'";
+        $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+        $data = $xoopsDB->fetchArray($result);
+
         return $data;
     }
 }

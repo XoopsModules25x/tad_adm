@@ -1,3 +1,119 @@
+Tad Adm 2.89 (Released 2020-12-17)
+==================================================================
+1.Fix the problem of not being able to delete spam accounts in batch
+2.Upgrade Adminer to 4.7.8
+3.Merge BootStrap3 and BootStrap4 templates
+
+Tad Adm 2.88 (Released on 2020-08-06)
+==================================================================
+1. Fix getgrgid() error.
+2. Merge Template
+3. Screen fine tuning
+4. Make the pinned items downloadable again.
+5. Completing the English Language System
+
+
+Tad Adm 2.87 (Released on 2020-06-19)
+==================================================================
+1. Support XOOPS 2.5.11.
+2. Upgrade Adminer to 4.7.7.
+3. Prevent "Rescue Password" function from being triggered by search engine
+
+
+Tad Adm 2.86 (released on 2020-04-18)
+==================================================================
+1. Optimize the XOOPS Upgrade Migration Guide
+
+Tad Adm 2.85 (released 2020-03-14)
+==================================================================
+1.Upgrade Adminer to 4.7.6
+2.Fixed the problem that ordinary users will not jump to the homepage when logging in with this module
+3. Remove unnecessary files
+4. Amendment for Accessibility 2.0 AA Standard
+
+
+Tad Adm 2.84 (2019-08-17 released)
+==================================================================
+1. Upgrade Adminer to 4.7.2
+2. Fixed an issue where ssh could not be used
+
+Tad Adm 2.83 (released from 2019-07-28)
+==================================================================
+1. Added installation material function
+
+Tad Adm 2.82 (released from 2019-06-13)
+==================================================================
+1. Modify XOOPS can not upgrade the problem
+2. Add various versions and dependency checks
+3. Significantly improved installation and upgrade of new screens
+
+
+Tad Adm 2.81 (released from 2019-05-09)
+==================================================================
+1. Upgrade Adminer to 4.7.1
+2. Remove the phpseclib suite
+3. Support XOOPS 2.5.10
+4. Fix XOOPS version misjudgment problem
+
+
+Tad Adm 2.8 (released on 2019-01-01)
+==================================================================
+1. Support BootStrap4
+2. Support 7.3
+3. Support MySQL database strict mode
+4. Added XOOPS online upgrade function
+
+
+Tad Adm 2.74 (released on 2018-12-03)
+==================================================================
+1. Fix the problem that the image savior is blank
+2. Upgrade Adminer to 4.7.0
+
+
+Tad Adm 2.73 (released on 2018-05-15)
+==================================================================
+1. Modify online installation screen
+2. Compatible with PHP 5.3
+3. Add online block installation
+4 new upgrade, migration guide
+5. Remove the tchinese Big5 language
+
+Tad Adm 2.72 (released on 2018-03-20)
+==================================================================
+1. Upgrade Adminer to 4.6.2
+2. Supports PHP 7.1
+3. Modify onine installation, upgrade interface
+
+
+Tad Adm 2.71 (2017-10-10 released)
+==================================================================
+1. Module download source can be set to their own
+2. Add the old template check and delete function
+
+
+Tad Adm 2.7 (2017-10-03 released)
+==================================================================
+1. Strengthen the cache removal mechanism
+2. Update the MySQL version information method
+3. Change to SSL connection
+
+
+Tad Adm 2.6 (2017-06-16 released)
+==================================================================
+1. Simplify the SSH login mechanism
+2. Complete accessibility 2.0 A level detection
+3. Mark the module to be closed
+
+
+Tad Adm 2.5.9 (2017-04-20 released)
+==================================================================
+1. Upgrade Adminer to 4.3.1
+2. Modify Adminer as an responsive template
+3. Add several Adminer plugins
+4. Add the XOOPS cpanel online upgrade feature
+5. Remove the FTP login
+
+
 Tad Adm 2.5.8 (2017-02-13 released)
 ==================================================================
 1.Fixed a bug that does not support the posix extension suite on Windows caused a blank screen

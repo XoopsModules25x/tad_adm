@@ -1,6 +1,5 @@
 <?php
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
-
+xoops_loadLanguage('modinfo_common', 'tadtools');
 define('_MI_TADADM_NAME', 'Webmaster Tools');
 define('_MI_TADADM_AUTHOR', 'Tad');
 define('_MI_TADADM_CREDITS', 'Michael Beck');
@@ -9,6 +8,7 @@ define('_MI_TADADM_ADMENU1', 'Module on-demand');
 define('_MI_TADADM_ADMENU3', 'Spam Account');
 define('_MI_TADADM_ADMENU2', 'Host Environment');
 define('_MI_TADADM_ADMENU4', 'Backup');
+define('_MI_TADADM_ADMENU5', 'Clean Templates');
 define('_MI_TADADM_BNAME1', 'New Spam Accounts');
 define('_MI_TADADM_BDESC1', 'Block new Spam accounts');
 define('_MI_TADADM_LIST_AMOUNT', 'Number of Accounts displayed per page');
@@ -23,8 +23,13 @@ define('_MI_TADADM_SSH_PORT', 'SSH port');
 define('_MI_TADADM_SSH_PORT_DESC', 'Setup SSH port');
 
 define('_MI_TADADM_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_TADADM_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_TADADM_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_TADADM_BACK_2_ADMIN', 'Back to Administration of ');
 
 //help
 define('_MI_TADADM_HELP_OVERVIEW', 'Overview');
+
+define('_MI_TADADM_SOURCE', 'Download the list source');
+define('_MI_TADADM_SOURCE_DESC', 'If the update list can not be displayed, change to: http://120.115.2.90');
+
+define('_MI_TADADM_XOOPS_UPGRADE', 'XOOPS Upgrade');

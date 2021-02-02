@@ -1,7 +1,5 @@
 <?php
-//Must be added to the module language
-define('_TAD_NEED_TADTOOLS', 'This module needs TadTools module. You can download TadTools from <a href="http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1" target="_blank">XOOPS EasyGO</a>.');
-
+xoops_loadLanguage('main', 'tadtools');
 define('_MD_TADADM_SET', 'Set');
 define('_MD_TADADM_NAME', 'Webmaster Tools');
 define('_MD_TADADM_PASSWD', 'Recover Password');
@@ -62,3 +60,7 @@ define('_MD_TADADM_USER_AND_GROUP', 'Groups and Users');
 define('_MD_TADADM_XOOPS_ROOT_PATH', 'install path');
 define('_MD_TADADM_XOOPS_VAR_PATH', 'xoops_data path');
 define('_MD_TADADM_XOOPS_TRUST_PATH', 'xoops_lib path');
+define('_MD_TADADM_MOVE288', 'Website Upgrade or Migration Guide');
+define('_MD_TADADM_CHANGE_CONFIRM_TITLE', ' Make sure to proceed with the password change procedure?');
+define('_MD_TADADM_CHANGE_CONFIRM_TEXT', ' After confirming, please go to admin mailbox to receive and operate according to the mail content');
+define('_MD_TADADM_CHANGE_CONFIRM_BTN', 'OK');

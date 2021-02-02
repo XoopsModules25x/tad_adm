@@ -1,13 +1,14 @@
 <?php
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+xoops_loadLanguage('modinfo_common', 'tadtools');
 define('_MI_TADADM_NAME', '站長工具箱');
-define('_MI_TADADM_AUTHOR', '站長工具箱');
+define('_MI_TADADM_AUTHOR', 'Tad (tad0616@gmail.com)');
 define('_MI_TADADM_CREDITS', 'Michael Beck');
 define('_MI_TADADM_DESC', '此模組提供一些站長用的工具');
 define('_MI_TADADM_ADMENU1', '模組隨選');
 define('_MI_TADADM_ADMENU3', '清理垃圾帳戶');
 define('_MI_TADADM_ADMENU2', '主機環境');
 define('_MI_TADADM_ADMENU4', '備份');
+define('_MI_TADADM_ADMENU5', '畫面救星');
 define('_MI_TADADM_BNAME1', '新的垃圾帳戶');
 define('_MI_TADADM_BDESC1', '新的垃圾帳戶區塊');
 define('_MI_TADADM_LIST_AMOUNT', '每頁顯示的帳號數');
@@ -22,8 +23,13 @@ define('_MI_TADADM_SSH_PORT', '設定 SSH 的連線 port');
 define('_MI_TADADM_SSH_PORT_DESC', '請根據網站主機使用的SSH port來設定');
 
 define('_MI_TADADM_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_TADADM_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_TADADM_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_TADADM_BACK_2_ADMIN', '管理');
 
 //help
 define('_MI_TADADM_HELP_OVERVIEW', '概要');
+
+define('_MI_TADADM_SOURCE', '下載清單來源');
+define('_MI_TADADM_SOURCE_DESC', '若無法顯示升級清單，可改為 http://120.115.2.90 試試');
+
+define('_MI_TADADM_XOOPS_UPGRADE', 'XOOPS升級');
